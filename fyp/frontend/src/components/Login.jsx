@@ -61,6 +61,7 @@ const Login = () => {
                             <label className="block text-sm font-medium text-slate-700 mb-2">Role</label>
                             <div className="relative">
                                 <select
+                                    data-testid="login-role"
                                     className="w-full pl-4 pr-10 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all appearance-none"
                                     value={role}
                                     onChange={(e) => setRole(e.target.value)}
@@ -85,6 +86,7 @@ const Login = () => {
                                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                 <input
                                     type="email"
+                                    data-testid="login-email"
                                     className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                     placeholder="name@university.edu"
                                     value={email}
@@ -108,6 +110,7 @@ const Login = () => {
                                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                                 <input
                                     type="password"
+                                    data-testid="login-password"
                                     className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                     placeholder="••••••••"
                                     value={password}
@@ -119,6 +122,7 @@ const Login = () => {
 
                         <button
                             type="submit"
+                            data-testid="login-submit"
                             className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg shadow-blue-600/30"
                         >
                             <span>Sign In</span>

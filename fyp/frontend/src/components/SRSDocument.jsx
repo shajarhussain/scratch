@@ -136,7 +136,12 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
     // --- RENDERERS ---
 
     const renderSRSSection = (schedule) => {
-        if (!schedule) return null;
+        if (!schedule) return (
+            <div data-testid="srs-no-schedule-msg" className="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8 text-center text-slate-500 font-medium">
+                <AlertTriangle size={32} className="mx-auto text-yellow-500 mb-3" />
+                No active schedule mapped for Interim Evaluation I. Upload window is currently unavailable.
+            </div>
+        );
 
         const status = schedule.srsDeliverable?.status || 'Open';
         const isSubmitted = status === 'Submitted' || status === 'Approved' || status === 'Changes Requested';
@@ -161,8 +166,8 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
                     <div className="border-2 border-dashed border-indigo-200 bg-indigo-50 rounded-lg p-8 text-center">
                         <Upload size={40} className="mx-auto text-indigo-400 mb-3" />
                         <p className="text-indigo-800 font-medium mb-4">Upload your SRS Document (PDF/DOC)</p>
-                        <input type="file" accept=".pdf,.doc,.docx" onChange={(e) => setSrsFile(e.target.files[0])} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 mx-auto max-w-xs" />
-                        <button onClick={uploadSRS} disabled={!srsFile} className="mt-4 bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors">
+                        <input type="file" accept=".pdf,.doc,.docx" data-testid="srs-file-input" onChange={(e) => setSrsFile(e.target.files[0])} className="block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 mx-auto max-w-xs" />
+                        <button onClick={uploadSRS} data-testid="srs-submit-button" disabled={!srsFile} className="mt-4 bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 disabled:opacity-50 transition-colors">
                             Submit SRS
                         </button>
                     </div>
@@ -295,6 +300,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
                     <div className="mt-6 text-center">
                         <button
                             onClick={() => submitDeliverableHandler(schedule._id, 'Mid-Term Evaluation II')}
+                            data-testid="mid-term-submit-button"
                             disabled={!schedule.artifacts?.some(a => a.type === 'Presentation') || !schedule.artifacts?.some(a => a.type === 'Code')}
                             className="bg-teal-600 text-white px-8 py-3 rounded-lg font-bold shadow hover:bg-teal-700 disabled:bg-slate-300 disabled:cursor-not-allowed flex items-center justify-center mx-auto"
                         >
@@ -409,6 +415,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
                     ) : (
                         <button
                             onClick={() => submitDeliverableHandler(schedule._id, 'Final Viva')}
+                            data-testid="final-submit-button"
                             disabled={!requiredDocs.every(d => schedule.artifacts?.some(a => a.type === d.type))}
                             className="bg-indigo-600 text-white px-8 py-3 rounded-lg font-bold shadow-lg hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-105 active:scale-95"
                         >

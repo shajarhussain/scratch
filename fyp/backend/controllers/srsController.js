@@ -11,15 +11,36 @@ const uploadSRS = async (req, res) => {
         }
 
         // Time-based validation
-        // NOTE: For Mid-Term Evaluation II, upload is not linked to srsUploadStart date strictness by user request
+        // Time-based validation
         const now = new Date();
-        const end = new Date(schedule.eventDate);
+        const end = new Date(schedule.eventDate); // Deadline is the event date (presentation day)
+
+        // 1. Check Start Date (if set)
+        if (schedule.srsUploadStartDate) {
+            const start = new Date(schedule.srsUploadStartDate);
+            // Reset times to compare dates only to avoid timezone confusion for start date
+            start.setHours(0, 0, 0, 0);
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            if (today < start) {
+                return res.status(400).json({
+                    message: `SRS uploads are not open yet. Starts on ${start.toLocaleDateString()}`
+                });
+            }
+        }
+
+        // 2. Check Deadline
+        // Set end time to end of the day or exact event time if desired. 
+        // For now, let's allow upload until the end of the event day? 
+        // Or strictly before event starts. Usually before event starts.
+        // Let's assume end of that day for simplicity or raw date comparison.
+        // If eventDate is 00:00, then "now > end" triggers as soon as that day starts, which might be wrong.
+        // Let's set deadline to End of Day of Event Date.
+        end.setHours(23, 59, 59, 999);
 
         if (now > end) {
-            return res.status(400).json({ message: 'SRS upload deadline has passed.' });
-        }
-        if (now > end) {
-            return res.status(400).json({ message: 'SRS upload deadline has passed.' });
+            return res.status(400).json({ message: 'SRS upload deadline has passed (Event Date).' });
         }
 
         let fileUrl = req.body.fileUrl;

@@ -1,0 +1,419 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 6,
+    "passes": 3,
+    "pending": 0,
+    "failures": 3,
+    "start": "2026-03-27T17:15:29.230Z",
+    "end": "2026-03-27T17:16:34.395Z",
+    "duration": 65165,
+    "testsRegistered": 6,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "a056c96f-1594-435f-88f9-469ce67badeb",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e2505165-f71e-44c4-accb-5869586d45e0",
+          "title": "Selenium Automation: Group Creation (TC-GRP-01, 02)",
+          "fullFile": "C:\\Users\\user\\.gemini\\antigravity\\scratch\\fyp\\selenium-tests\\tests\\2_group.test.js",
+          "file": "\\tests\\2_group.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Selenium Automation: Group Creation (TC-GRP-01, 02)\"",
+              "fullTitle": "Selenium Automation: Group Creation (TC-GRP-01, 02) \"before each\" hook in \"Selenium Automation: Group Creation (TC-GRP-01, 02)\"",
+              "timedOut": false,
+              "duration": 969,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await createDriver(); // Fresh session\npage = new BasePage(driver);\nauth = new AuthHelper(page);",
+              "err": {},
+              "uuid": "d95ff6ee-ce27-43b4-8bc6-4cb055181f58",
+              "parentUUID": "e2505165-f71e-44c4-accb-5869586d45e0",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Selenium Automation: Group Creation (TC-GRP-01, 02)\"",
+              "fullTitle": "Selenium Automation: Group Creation (TC-GRP-01, 02) \"after each\" hook in \"Selenium Automation: Group Creation (TC-GRP-01, 02)\"",
+              "timedOut": false,
+              "duration": 113,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (this.currentTest.state === 'failed') {\n  await takeScreenshot(driver, this.currentTest.title);\n}\nawait driver.quit();",
+              "err": {},
+              "uuid": "b1c34d4d-4f65-4cf7-ba98-b5c587e6636c",
+              "parentUUID": "e2505165-f71e-44c4-accb-5869586d45e0",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "[TC-GRP-01] [MM-1.1] Create Group - UI Flow",
+              "fullTitle": "Selenium Automation: Group Creation (TC-GRP-01, 02) [TC-GRP-01] [MM-1.1] Create Group - UI Flow",
+              "timedOut": false,
+              "duration": 9089,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await auth.loginAs('student_nogroup', 'Student');\nawait driver.wait(until.urlIs(env.baseUrl + '/'), env.timeouts.pageLoad);\n// Navigate to Group Creation via Sidebar Tab\nconst groupTab = await driver.wait(until.elementLocated(By.css('[data-testid=\"nav-item-group\"]')), 5000);\nawait groupTab.click();\n// Wait for the specific page header to confirm render\nawait driver.wait(until.elementLocated(By.xpath('//h2[contains(text(), \"Form Your Group\")]')), 5000);\ntry {\n  const studentInput = await page.getElement(By.css('[data-testid=\"group-member-0\"]'));\n  await studentInput.sendKeys('SEL003'); // Use seeded student ID\n  await page.click(By.css('[data-testid=\"group-verify-0\"]'));\n  // Wait for verification success (member name appearing or similar)\n  await driver.sleep(2000);\n  \n  const supervisorInput = await page.getElement(By.css('[data-testid=\"group-supervisor-id\"]'));\n  await supervisorInput.sendKeys('SUPSEL1'); // Use seeded supervisor ID\n  await page.click(By.css('[data-testid=\"group-verify-supervisor\"]'));\n  // Wait for verification\n  await driver.sleep(2000);\n  // Click create\n  await page.click(By.css('[data-testid=\"group-submit\"]'));\n  \n  // Look for success toast directly instead of redirect\n  const successToast = await driver.wait(until.elementLocated(By.css('[data-testid=\"group-success-msg\"]')), 5000);\n  expect(successToast).to.not.be.null;\n} catch(err) {\n  console.log('    [Note] Group creation likely blocked or already in group.');\n  throw err;\n}",
+              "err": {},
+              "uuid": "434851c9-4fe2-4186-872a-811d6cab9b91",
+              "parentUUID": "e2505165-f71e-44c4-accb-5869586d45e0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "434851c9-4fe2-4186-872a-811d6cab9b91"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9089,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 40000
+        },
+        {
+          "uuid": "fc31cc48-3120-4f07-9fab-a110a39ed3ee",
+          "title": "Selenium Automation: Scheduling (TC-SCH-01, 02)",
+          "fullFile": "C:\\Users\\user\\.gemini\\antigravity\\scratch\\fyp\\selenium-tests\\tests\\3_schedule.test.js",
+          "file": "\\tests\\3_schedule.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Selenium Automation: Scheduling (TC-SCH-01, 02)\"",
+              "fullTitle": "Selenium Automation: Scheduling (TC-SCH-01, 02) \"before each\" hook in \"Selenium Automation: Scheduling (TC-SCH-01, 02)\"",
+              "timedOut": false,
+              "duration": 1333,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await createDriver(); // Fresh session\npage = new BasePage(driver);\nauth = new AuthHelper(page);",
+              "err": {},
+              "uuid": "bc9884a3-27bd-4589-833e-b8f63e50c633",
+              "parentUUID": "fc31cc48-3120-4f07-9fab-a110a39ed3ee",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Selenium Automation: Scheduling (TC-SCH-01, 02)\"",
+              "fullTitle": "Selenium Automation: Scheduling (TC-SCH-01, 02) \"after each\" hook in \"Selenium Automation: Scheduling (TC-SCH-01, 02)\"",
+              "timedOut": false,
+              "duration": 682,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (this.currentTest.state === 'failed') {\n  await takeScreenshot(driver, this.currentTest.title);\n}\nawait driver.quit();",
+              "err": {},
+              "uuid": "de0e0723-c410-4b35-a8c6-37569f78394e",
+              "parentUUID": "fc31cc48-3120-4f07-9fab-a110a39ed3ee",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "[TC-SCH-01] [MM-2.1] Create Schedule - UI Verification",
+              "fullTitle": "Selenium Automation: Scheduling (TC-SCH-01, 02) [TC-SCH-01] [MM-2.1] Create Schedule - UI Verification",
+              "timedOut": false,
+              "duration": 11725,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await auth.loginAs('coordinator');\nawait driver.wait(until.urlIs(env.baseUrl + '/'), env.timeouts.pageLoad);\n// Navigate via Sidebar Tab\nconst schedulesTab = await driver.wait(until.elementLocated(By.css('[data-testid=\"nav-item-schedules\"]')), 5000);\nawait schedulesTab.click();\n\nconst openModalBtn = await driver.wait(until.elementLocated(By.css('[data-testid=\"schedule-create-open\"]')), 5000);\nawait openModalBtn.click();\n\n// The Event Type must be selected FIRST to trigger the dependent rendering of the form fields\nconst eventTypeBtn = await driver.wait(until.elementLocated(By.css('[data-testid=\"schedule-type-Proposal Defense\"]')), 5000);\nawait eventTypeBtn.click();\nconst groupSelect = await driver.wait(until.elementLocated(By.css('[data-testid=\"schedule-group-select\"]')), 5000);\nawait groupSelect.sendKeys('SEL-2026-001');\nconst dateInput = await page.getElement(By.css('[data-testid=\"schedule-event-date\"]'));\nawait dateInput.sendKeys('2026-12-15');\n// Currently the form has start/end time without data-testid, but they are unique enough by name/type\nconst startInput = await page.getElement(By.css('input[type=\"time\"]')); // First one is start\nawait startInput.sendKeys('14:00');\n// Find the second time input for End Time\nconst timeInputs = await driver.findElements(By.css('input[type=\"time\"]'));\nif (timeInputs.length > 1) {\n  await timeInputs[1].sendKeys('15:00');\n}\nconst venueInput = await driver.wait(until.elementLocated(By.xpath('//input[@placeholder=\"Venue\" or @placeholder=\"Room A\"] | //input[@type=\"text\" and contains(@class, \"w-full px-4\")]')), 5000);\nawait venueInput.sendKeys('Room C');\n// Click create\nconst submitBtn = await page.getElement(By.css('[data-testid=\"schedule-submit\"]'));\nawait submitBtn.click();\n\ntry {\n  const successToast = await driver.wait(until.elementLocated(By.xpath(\"//*[contains(text(), 'successfully') or contains(text(), 'Success')]\")), 5000);\n  expect(successToast).to.not.be.null;\n} catch(err) {\n  console.log('    [Note] Schedule creation may be blocked due to missing test group or duplicate schedule state.');\n  throw err;\n}",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(xpath, //*[contains(text(), 'successfully') or contains(text(), 'Success')])\nWait timed out after 5047ms",
+                "estack": "TimeoutError: Waiting for element to be located By(xpath, //*[contains(text(), 'successfully') or contains(text(), 'Success')])\nWait timed out after 5047ms\n    at C:\\Users\\user\\.gemini\\antigravity\\scratch\\fyp\\selenium-tests\\node_modules\\selenium-webdriver\\lib\\webdriver.js:929:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+                "diff": null
+              },
+              "uuid": "370b5d29-64a1-41d5-ac1d-26e873130aee",
+              "parentUUID": "fc31cc48-3120-4f07-9fab-a110a39ed3ee",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[TC-SCH-02] [MM-2.2] Conflict Detection Warning",
+              "fullTitle": "Selenium Automation: Scheduling (TC-SCH-01, 02) [TC-SCH-02] [MM-2.2] Conflict Detection Warning",
+              "timedOut": false,
+              "duration": 8869,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await auth.loginAs('coordinator');\nawait driver.wait(until.urlIs(env.baseUrl + '/'), env.timeouts.pageLoad);\nawait page.navigateTo('/schedules');\nconst openModalBtn = await driver.wait(until.elementLocated(By.css('[data-testid=\"schedule-create-open\"]')), 5000);\nawait openModalBtn.click();\n// Enter conflicting details (Room A at 10:00 on 2026-12-01 as per seed)\nconst dateInput = await driver.wait(until.elementLocated(By.css('[data-testid=\"schedule-event-date\"]')), 5000);\nawait dateInput.sendKeys('2026-12-01');\nconst timeInputs = await driver.findElements(By.css('input[type=\"time\"]'));\nawait timeInputs[0].sendKeys('10:00');\nawait timeInputs[1].sendKeys('11:00');\nconst venueInput = await driver.wait(until.elementLocated(By.xpath('//input[@placeholder=\"Venue\" or @placeholder=\"Room A\"] | //input[@type=\"text\" and contains(@class, \"w-full px-4\")]')), 5000);\nawait venueInput.sendKeys('Room A');\n// Click submit\nconst submitBtn = await page.getElement(By.css('[data-testid=\"schedule-submit\"]'));\nawait submitBtn.click();\ntry {\n  // We expect a conflict warning\n  const conflictMsg = await driver.wait(until.elementLocated(By.xpath(\"//*[contains(translate(text(), 'CONFLICT', 'conflict'), 'conflict')]\")), 5000);\n  expect(conflictMsg).to.not.be.null;\n} catch(err) {\n  console.log('    [Note] Conflict detection requires pre-existing conflicting data seed.');\n  throw err;\n}",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(css selector, [data-testid=\"schedule-create-open\"])\nWait timed out after 5136ms",
+                "estack": "TimeoutError: Waiting for element to be located By(css selector, [data-testid=\"schedule-create-open\"])\nWait timed out after 5136ms\n    at C:\\Users\\user\\.gemini\\antigravity\\scratch\\fyp\\selenium-tests\\node_modules\\selenium-webdriver\\lib\\webdriver.js:929:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+                "diff": null
+              },
+              "uuid": "b8cf56d7-eea5-4284-8ad9-90e98139b4ed",
+              "parentUUID": "fc31cc48-3120-4f07-9fab-a110a39ed3ee",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "370b5d29-64a1-41d5-ac1d-26e873130aee",
+            "b8cf56d7-eea5-4284-8ad9-90e98139b4ed"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 20594,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 40000
+        },
+        {
+          "uuid": "38462ac7-c51e-40c3-b1da-592750404838",
+          "title": "Selenium Automation: Progress Logs (TC-PRG-01)",
+          "fullFile": "C:\\Users\\user\\.gemini\\antigravity\\scratch\\fyp\\selenium-tests\\tests\\4_progress.test.js",
+          "file": "\\tests\\4_progress.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Selenium Automation: Progress Logs (TC-PRG-01)\"",
+              "fullTitle": "Selenium Automation: Progress Logs (TC-PRG-01) \"before each\" hook in \"Selenium Automation: Progress Logs (TC-PRG-01)\"",
+              "timedOut": false,
+              "duration": 1614,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await createDriver(); // Fresh session\npage = new BasePage(driver);\nauth = new AuthHelper(page);",
+              "err": {},
+              "uuid": "144b72d5-d468-4ac1-b99d-a121911e0317",
+              "parentUUID": "38462ac7-c51e-40c3-b1da-592750404838",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Selenium Automation: Progress Logs (TC-PRG-01)\"",
+              "fullTitle": "Selenium Automation: Progress Logs (TC-PRG-01) \"after each\" hook in \"Selenium Automation: Progress Logs (TC-PRG-01)\"",
+              "timedOut": false,
+              "duration": 366,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (this.currentTest.state === 'failed') {\n  await takeScreenshot(driver, this.currentTest.title);\n}\nawait driver.quit();",
+              "err": {},
+              "uuid": "f855f162-afba-4cb5-b032-61bfe56e4f2b",
+              "parentUUID": "38462ac7-c51e-40c3-b1da-592750404838",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "[TC-PRG-01] [MM-4.1] Submit Weekly Progress Log",
+              "fullTitle": "Selenium Automation: Progress Logs (TC-PRG-01) [TC-PRG-01] [MM-4.1] Submit Weekly Progress Log",
+              "timedOut": false,
+              "duration": 8650,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "await auth.loginAs('student_ingroup', 'Student');\nawait driver.wait(until.urlIs(env.baseUrl + '/'), env.timeouts.pageLoad);\n// Navigate via Sidebar Tab (Student's tab is 'Attendance Log' for weekly progress)\nconst logTab = await driver.wait(until.elementLocated(By.css('[data-testid=\"nav-item-attendance\"]')), 5000);\nawait logTab.click();\ntry {\n  const weekNumber = await driver.wait(until.elementLocated(By.css('[data-testid=\"progress-week-num\"]')), 5000);\n  await weekNumber.clear(); \n  await weekNumber.sendKeys('2');\n  const tasksCompleted = await page.getElement(By.css('[data-testid=\"progress-tasks-completed\"]'));\n  await tasksCompleted.sendKeys('Refactoring Selenium Suite with data-testid');\n  const nextWeekTasks = await page.getElement(By.css('[data-testid=\"progress-tasks-planned\"]'));\n  await nextWeekTasks.sendKeys('Execute full suite and generate report');\n  // Optional fields like hours\n  const hoursInput = await page.getElement(By.css('[data-testid=\"progress-hours\"]'));\n  await hoursInput.sendKeys('10');\n  await page.click(By.css('[data-testid=\"progress-submit\"]'));\n  const successToast = await driver.wait(until.elementLocated(By.css('[data-testid=\"progress-success-msg\"]')), 5000);\n  expect(successToast).to.not.be.null;\n} catch(err) {\n  console.log('    [Note] Progress log submission depends on active group presence.');\n  throw err;\n}",
+              "err": {
+                "message": "TimeoutError: Waiting for element to be located By(css selector, [data-testid=\"progress-week-num\"])\nWait timed out after 5065ms",
+                "estack": "TimeoutError: Waiting for element to be located By(css selector, [data-testid=\"progress-week-num\"])\nWait timed out after 5065ms\n    at C:\\Users\\user\\.gemini\\antigravity\\scratch\\fyp\\selenium-tests\\node_modules\\selenium-webdriver\\lib\\webdriver.js:929:22\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)",
+                "diff": null
+              },
+              "uuid": "2ae65927-b880-4bb9-9599-a2fb54b61b94",
+              "parentUUID": "38462ac7-c51e-40c3-b1da-592750404838",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "2ae65927-b880-4bb9-9599-a2fb54b61b94"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 8650,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 40000
+        },
+        {
+          "uuid": "0136ee70-ba14-49fb-a41a-7abf302543dd",
+          "title": "Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B)",
+          "fullFile": "C:\\Users\\user\\.gemini\\antigravity\\scratch\\fyp\\selenium-tests\\tests\\5_defects.test.js",
+          "file": "\\tests\\5_defects.test.js",
+          "beforeHooks": [
+            {
+              "title": "\"before each\" hook in \"Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B)\"",
+              "fullTitle": "Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B) \"before each\" hook in \"Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B)\"",
+              "timedOut": false,
+              "duration": 2015,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "driver = await createDriver(); // Fresh session\npage = new BasePage(driver);\nauth = new AuthHelper(page);",
+              "err": {},
+              "uuid": "0e06f841-6134-4114-89dc-22cfdf74ddd1",
+              "parentUUID": "0136ee70-ba14-49fb-a41a-7abf302543dd",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after each\" hook in \"Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B)\"",
+              "fullTitle": "Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B) \"after each\" hook in \"Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B)\"",
+              "timedOut": false,
+              "duration": 1042,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (this.currentTest.state === 'failed') {\n  await takeScreenshot(driver, this.currentTest.title);\n}\nawait driver.quit();",
+              "err": {},
+              "uuid": "72c023aa-8bca-47c6-a3e8-1cb1958ea78d",
+              "parentUUID": "0136ee70-ba14-49fb-a41a-7abf302543dd",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "[TC-SCH-03B] [Defect Verification] SRS Upload temporal constraints check",
+              "fullTitle": "Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B) [TC-SCH-03B] [Defect Verification] SRS Upload temporal constraints check",
+              "timedOut": false,
+              "duration": 5681,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "console.log('    [Context] Verifying system properly defends against temporal bypasses.');\nawait auth.loginAs('student_ingroup', 'Student');\nawait driver.wait(until.urlIs(env.baseUrl + '/'), env.timeouts.pageLoad);\n// Navigate via Sidebar SPA Tab\nconst srsTab = await driver.wait(until.elementLocated(By.css('[data-testid=\"nav-item-srs-document\"]')), 5000);\nawait srsTab.click();\n\ntry {\n  // Wait for Component to render\n  await driver.wait(until.elementLocated(By.xpath('//h3[contains(text(), \"SRS Document\")]')), 5000);\n  // Create a dummy valid file temporarily\n  const dummyFilePath = path.join(__dirname, 'dummy_srs.pdf');\n  fs.writeFileSync(dummyFilePath, 'dummy pdf content');\n  // Send to the file input\n  const fileInput = await driver.wait(until.elementLocated(By.css('[data-testid=\"srs-file-input\"]')), 5000);\n  await fileInput.sendKeys(dummyFilePath);\n  \n  // Click submit\n  const submitBtn = await page.getElement(By.css('[data-testid=\"srs-submit-button\"]'));\n  await submitBtn.click();\n  // Verification: The backend explicitly rejects uploads before the window Start Date\n  await driver.wait(until.alertIsPresent(), 5000);\n  const alert = await driver.switchTo().alert();\n  const alertText = await alert.getText();\n  expect(alertText).to.include(\"not open yet\");\n  console.log('    [System Behavior Confirmed] System correctly enforces temporal constraints.');\n  await alert.accept();\n  // Cleanup\n  if (fs.existsSync(dummyFilePath)) fs.unlinkSync(dummyFilePath);\n} catch(err) {\n  console.log('    [Note] Test blocked: UI may strictly require a seeded schedule.');\n  throw err;\n}",
+              "err": {},
+              "uuid": "6a7ba93b-6aaa-4c9d-91c7-b41c437a1bf6",
+              "parentUUID": "0136ee70-ba14-49fb-a41a-7abf302543dd",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "[TC-SCH-08] [Defect Verification] Invalid SRS Type triggers Unhandled 500 rejection",
+              "fullTitle": "Selenium Automation: Defect Verification (TC-SCH-08, TC-SCH-03B) [TC-SCH-08] [Defect Verification] Invalid SRS Type triggers Unhandled 500 rejection",
+              "timedOut": false,
+              "duration": 7402,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "console.log('    [Context] Confirming ISS-007: Multer crashes rendering unhandled 500 error instead of 400 validation.');\nawait auth.loginAs('student_ingroup', 'Student');\nawait driver.wait(until.urlIs(env.baseUrl + '/'), env.timeouts.pageLoad);\n// Navigate via Sidebar SPA Tab\nconst srsTab = await driver.wait(until.elementLocated(By.css('[data-testid=\"nav-item-srs-document\"]')), 5000);\nawait srsTab.click();\ntry {\n  await driver.wait(until.elementLocated(By.xpath('//h3[contains(text(), \"SRS Document\")]')), 5000);\n  // Create a dummy invalid file temporarily\n  const dummyFilePath = path.join(__dirname, 'dummy_script.js');\n  fs.writeFileSync(dummyFilePath, 'console.log(\"malicious\")');\n  const fileInput = await driver.wait(until.elementLocated(By.css('[data-testid=\"srs-file-input\"]')), 5000);\n  await fileInput.sendKeys(dummyFilePath);\n  \n  const submitBtn = await page.getElement(By.css('[data-testid=\"srs-submit-button\"]'));\n  await submitBtn.click();\n  // Wait for network response/UI update indicating error\n  await driver.sleep(3000);\n  \n  // Verification of 500 error display (often a blank page or unhandled alert in this app)\n  // For this specific defect, we check if the app crashed or showed an error alert\n  try {\n    const alert = await driver.switchTo().alert();\n    const alertText = await alert.getText();\n    console.log('    [Defect Found] Alert text:', alertText);\n    await alert.accept();\n  } catch(e) {\n    // If no alert, check if any 500 message appeared\n    const pageSource = await driver.getPageSource();\n    expect(pageSource.includes('500') || pageSource.includes('Error')).to.be.true;\n  }\n  \n  // Cleanup\n  if (fs.existsSync(dummyFilePath)) fs.unlinkSync(dummyFilePath);\n} catch(err) {\n  console.log('    [Note] Test blocked from UI execution if no schedules are available.');\n  throw err;\n}",
+              "err": {},
+              "uuid": "0a6160e9-f820-453b-b49b-31f9cfee91c3",
+              "parentUUID": "0136ee70-ba14-49fb-a41a-7abf302543dd",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "6a7ba93b-6aaa-4c9d-91c7-b41c437a1bf6",
+            "0a6160e9-f820-453b-b49b-31f9cfee91c3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 13083,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 40000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 40000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.5"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}

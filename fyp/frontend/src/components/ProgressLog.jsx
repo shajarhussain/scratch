@@ -373,12 +373,12 @@ const ProgressLog = () => {
 
             {/* Messages */}
             {error && (
-                <div className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded">
+                <div data-testid="progress-error-msg" className="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded">
                     {error}
                 </div>
             )}
             {success && (
-                <div className="p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded flex items-center space-x-2">
+                <div data-testid="progress-success-msg" className="p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded flex items-center space-x-2">
                     <CheckCircle size={20} />
                     <span>{success}</span>
                 </div>
@@ -396,6 +396,7 @@ const ProgressLog = () => {
                                 </label>
                                 <input
                                     type="number"
+                                    data-testid="progress-week-num"
                                     className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
                                     value={formData.weekNumber}
                                     onChange={(e) => setFormData({ ...formData, weekNumber: parseInt(e.target.value) })}
@@ -409,6 +410,7 @@ const ProgressLog = () => {
                                 </label>
                                 <input
                                     type="date"
+                                    data-testid="progress-date"
                                     className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
                                     value={formData.weekStartDate}
                                     onChange={(e) => setFormData({ ...formData, weekStartDate: e.target.value })}
@@ -423,6 +425,7 @@ const ProgressLog = () => {
                             </label>
                             <textarea
                                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+                                data-testid="progress-tasks-completed"
                                 rows="4"
                                 value={formData.tasksCompleted}
                                 onChange={(e) => setFormData({ ...formData, tasksCompleted: e.target.value })}
@@ -437,6 +440,7 @@ const ProgressLog = () => {
                             </label>
                             <textarea
                                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+                                data-testid="progress-tasks-planned"
                                 rows="4"
                                 value={formData.nextWeekTasks}
                                 onChange={(e) => setFormData({ ...formData, nextWeekTasks: e.target.value })}
@@ -464,6 +468,7 @@ const ProgressLog = () => {
                             </label>
                             <input
                                 type="number"
+                                data-testid="progress-hours"
                                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
                                 value={formData.hoursSpent}
                                 onChange={(e) => setFormData({ ...formData, hoursSpent: parseInt(e.target.value) })}
@@ -473,6 +478,7 @@ const ProgressLog = () => {
 
                         <button
                             type="submit"
+                            data-testid="progress-submit"
                             className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 font-medium shadow-lg"
                         >
                             Submit Progress Log

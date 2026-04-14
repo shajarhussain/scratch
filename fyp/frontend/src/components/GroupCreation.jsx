@@ -126,13 +126,13 @@ const GroupCreation = () => {
 
                 <div className="p-8">
                     {error && (
-                        <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded flex items-center space-x-2">
+                        <div data-testid="group-error-msg" className="mb-6 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded flex items-center space-x-2">
                             <AlertCircle size={20} />
                             <span>{error}</span>
                         </div>
                     )}
                     {success && (
-                        <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded flex items-center space-x-2">
+                        <div data-testid="group-success-msg" className="mb-6 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 rounded flex items-center space-x-2">
                             <Check size={20} />
                             <span>{success}</span>
                         </div>
@@ -157,6 +157,7 @@ const GroupCreation = () => {
                                 <div className="flex gap-3">
                                     <input
                                         type="text"
+                                        data-testid={`group-member-${index}`}
                                         value={member.studentId}
                                         onChange={(e) => handleChange(index, e.target.value)}
                                         className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
@@ -164,6 +165,7 @@ const GroupCreation = () => {
                                     />
                                     <button
                                         onClick={() => verifyMember(index)}
+                                        data-testid={`group-verify-${index}`}
                                         className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-2 ${member.verified
                                             ? 'bg-green-100 text-green-700 cursor-default'
                                             : 'bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-500/20'
@@ -201,13 +203,15 @@ const GroupCreation = () => {
                             <div className="flex gap-3">
                                 <input
                                     type="text"
+                                    data-testid="group-supervisor-id"
                                     value={supervisor.registrationId}
                                     onChange={(e) => handleSupervisorChange(e.target.value)}
                                     className="flex-1 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all"
                                     placeholder="Enter Supervisor Registration ID"
                                 />
                                 <button
-                                    onClick={verifySupervisor}
+                                    onClick={() => verifySupervisor()}
+                                    data-testid="group-verify-supervisor"
                                     className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center space-x-2 ${supervisor.verified
                                         ? 'bg-green-100 text-green-700 cursor-default'
                                         : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md shadow-indigo-500/20'
@@ -237,6 +241,7 @@ const GroupCreation = () => {
                     <div className="mt-8">
                         <button
                             onClick={createGroup}
+                            data-testid="group-submit"
                             disabled={loading}
                             className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-8 py-4 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg shadow-indigo-500/30 disabled:opacity-50 disabled:cursor-not-allowed"
                         >

@@ -332,6 +332,7 @@ const Schedules = () => {
             <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-wrap items-center gap-4">
                 <button
                     onClick={() => setShowCreateModal(true)}
+                    data-testid="schedule-create-open"
                     className="flex items-center space-x-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg"
                 >
                     <Plus size={20} />
@@ -577,6 +578,7 @@ const Schedules = () => {
                                             <button
                                                 key={type.value}
                                                 type="button"
+                                                data-testid={`schedule-type-${type.value}`}
                                                 onClick={() => {
                                                     setFormData({ ...formData, eventType: type.value });
                                                     setSelectedEventType(type.value);
@@ -601,6 +603,7 @@ const Schedules = () => {
                                                 <label className="block text-sm font-medium text-slate-700 mb-2">Event Date *</label>
                                                 <input
                                                     type="date"
+                                                    data-testid="schedule-event-date"
                                                     value={formData.eventDate}
                                                     onChange={(e) => setFormData({ ...formData, eventDate: e.target.value })}
                                                     className="w-full px-4 py-2 border border-slate-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500"
@@ -614,6 +617,7 @@ const Schedules = () => {
                                                 <label className="block text-sm font-medium text-slate-700 mb-2">Group *</label>
                                                 <select
                                                     value={formData.groupId}
+                                                    data-testid="schedule-group-select"
                                                     onChange={(e) => setFormData({ ...formData, groupId: e.target.value })}
                                                     className="w-full px-4 py-2 border border-slate-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500"
                                                     required
@@ -631,6 +635,7 @@ const Schedules = () => {
                                                 <label className="block text-sm font-medium text-slate-700 mb-2">Supervisor</label>
                                                 <select
                                                     value={formData.supervisorId}
+                                                    data-testid="schedule-supervisor-select"
                                                     onChange={(e) => setFormData({ ...formData, supervisorId: e.target.value })}
                                                     className="w-full px-4 py-2 border border-slate-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500"
                                                 >
@@ -795,7 +800,25 @@ const Schedules = () => {
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             )}
+
+                                        {/* SRS Upload Date - specific for Interim Evaluation I */}
+                                        {selectedEventType === 'Interim Evaluation I' && (
+                                            <div className="mt-4 p-4 bg-indigo-50 border border-indigo-100 rounded-lg">
+                                                <h4 className="font-semibold text-indigo-900 mb-2 text-sm">SRS Document Settings</h4>
+                                                <div>
+                                                    <label className="block text-sm font-medium text-slate-700 mb-2">SRS Upload Start Date</label>
+                                                    <input
+                                                        type="date"
+                                                        value={formData.srsUploadStartDate || ''}
+                                                        onChange={(e) => setFormData({ ...formData, srsUploadStartDate: e.target.value })}
+                                                        className="w-full px-4 py-2 border border-slate-300 rounded-lg outline-none focus:ring-2 focus:ring-indigo-500 bg-white"
+                                                    />
+                                                    <p className="text-xs text-slate-500 mt-1">Students can upload their SRS document starting from this date.</p>
+                                                </div>
+                                            </div>
+                                        )}
 
                                         {/* External Evaluator - for Final Viva only */}
                                         {selectedEventType === 'Final Viva' && (
@@ -954,6 +977,7 @@ const Schedules = () => {
                                 <div className="flex space-x-3 pt-4 border-t border-slate-200">
                                     <button
                                         type="submit"
+                                        data-testid="schedule-submit"
                                         className="flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-3 rounded-lg font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg"
                                     >
                                         {isEditing ? 'Update Schedule' : 'Create Schedule'}

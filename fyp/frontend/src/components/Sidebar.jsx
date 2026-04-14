@@ -90,6 +90,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
                     return (
                         <button
                             key={link.id}
+                            data-testid={`nav-item-${link.id}`}
                             onClick={() => setActiveTab(link.id)}
                             className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${activeTab === link.id
                                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/50'

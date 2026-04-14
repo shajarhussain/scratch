@@ -1,0 +1,8 @@
+node_modules/
+*.zip
+fyp/backend/uploads/
+fyp/backend/expanded_output.log
+fyp/backend/expanded_test_results_raw.json
+# Other temp files
+.env
+.DS_Store
