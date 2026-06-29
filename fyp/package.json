@@ -1,16 +1,13 @@
 {
-  "name": "fyp",
+  "name": "fyp-deploy",
   "version": "1.0.0",
-  "main": "backend/server.js",
+  "private": true,
   "scripts": {
-    "render-build": "cd backend && npm install --omit=dev && cd ../frontend && npm install && npm run build",
+    "render-build": "npm --prefix backend install --omit=dev && npm --prefix frontend install && npm --prefix frontend run build",
     "render-start": "node backend/server.js",
     "start": "node backend/server.js"
   },
   "engines": {
     "node": ">=20"
-  },
-  "dependencies": {
-    "mongoose": "^9.0.0"
   }
 }
