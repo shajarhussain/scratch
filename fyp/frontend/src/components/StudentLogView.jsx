@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FileText, Calendar, CheckCircle, AlertTriangle, TrendingUp } from 'lucide-react';
 
@@ -14,7 +14,7 @@ const StudentLogView = () => {
     const fetchMyLogs = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/supervisor-logs/student/my-logs', {
+            const res = await axios.get('/api/supervisor-logs/student/my-logs', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setLogs(res.data);
@@ -95,7 +95,7 @@ const StudentLogView = () => {
                                                 Log #{log.logNumber} - {new Date(log.meetingDate).toLocaleDateString()}
                                             </div>
                                             <div className="text-sm text-slate-500">
-                                                {log.meetingType} Meeting • {log.supervisor?.name}
+                                                {log.meetingType} Meeting â€¢ {log.supervisor?.name}
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +166,7 @@ const StudentLogView = () => {
                                     {/* Next Tasks */}
                                     {(log.tasksAssigned || log.expectedDeliverables) && (
                                         <div className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                                            <div className="font-medium text-purple-700 mb-2">📝 Next Tasks</div>
+                                            <div className="font-medium text-purple-700 mb-2">ðŸ“ Next Tasks</div>
                                             {log.tasksAssigned && (
                                                 <div className="mb-2">
                                                     <div className="text-sm font-medium text-purple-600">Tasks:</div>
@@ -193,7 +193,7 @@ const StudentLogView = () => {
                                     {/* Warning Details */}
                                     {log.logStatus === 'Warning Issued' && log.warningDetails && (
                                         <div className="bg-red-50 border-l-4 border-red-500 p-4">
-                                            <div className="font-medium text-red-700 mb-1">⚠ Warning</div>
+                                            <div className="font-medium text-red-700 mb-1">âš  Warning</div>
                                             <p className="text-red-800">{log.warningDetails}</p>
                                         </div>
                                     )}

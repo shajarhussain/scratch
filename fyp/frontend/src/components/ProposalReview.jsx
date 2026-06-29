@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FileText, Check, X, AlertCircle, Trash2 } from 'lucide-react';
 
@@ -13,7 +13,7 @@ const ProposalReview = () => {
         const fetchProposals = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.get('http://127.0.0.1:5000/api/proposals', {
+                const res = await axios.get('/api/proposals', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setProposals(res.data);
@@ -29,7 +29,7 @@ const ProposalReview = () => {
     const handleAction = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.patch(`http://127.0.0.1:5000/api/proposals/${action.id}/status`, {
+            await axios.patch(`/api/proposals/${action.id}/status`, {
                 status: action.type,
                 comment
             }, {
@@ -53,7 +53,7 @@ const ProposalReview = () => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.patch(`http://127.0.0.1:5000/api/proposals/${id}/archive`, {}, {
+            await axios.patch(`/api/proposals/${id}/archive`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -96,7 +96,7 @@ const ProposalReview = () => {
                             <p className="text-slate-600 mb-4">{proposal.description}</p>
 
                             {proposal.fileUrl && (
-                                <a href={`http://127.0.0.1:5000/${proposal.fileUrl}`} target="_blank" rel="noreferrer" className="inline-flex items-center space-x-2 text-blue-600 hover:underline mb-6">
+                                <a href={`/${proposal.fileUrl}`} target="_blank" rel="noreferrer" className="inline-flex items-center space-x-2 text-blue-600 hover:underline mb-6">
                                     <FileText size={16} />
                                     <span>View Proposal Document</span>
                                 </a>

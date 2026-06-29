@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ArrowLeft, Save, Send, AlertCircle, FileText, History, Info, Users, Download } from 'lucide-react';
 
@@ -73,7 +73,7 @@ const EvaluationForm = ({ assignment, onSubmit, onCancel }) => {
         try {
             const token = localStorage.getItem('token');
             const res = await axios.get(
-                `http://127.0.0.1:5000/api/evaluator/assignments/${assignment._id}`,
+                `/api/evaluator/assignments/${assignment._id}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
 
@@ -154,7 +154,7 @@ const EvaluationForm = ({ assignment, onSubmit, onCancel }) => {
             }));
 
             await axios.post(
-                `http://127.0.0.1:5000/api/evaluator/assignments/${assignment._id}/evaluate`,
+                `/api/evaluator/assignments/${assignment._id}/evaluate`,
                 {
                     scores: { ...scores, total },
                     comments: feedback.comments,
@@ -288,7 +288,7 @@ const EvaluationForm = ({ assignment, onSubmit, onCancel }) => {
                                     />
                                     <div className="mt-2 text-xs text-slate-500 flex flex-wrap gap-2">
                                         {r.criteria.map((c, i) => (
-                                            <span key={i} className="bg-slate-100 px-2 py-1 rounded">✓ {c}</span>
+                                            <span key={i} className="bg-slate-100 px-2 py-1 rounded">âœ“ {c}</span>
                                         ))}
                                     </div>
                                 </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Calendar, Check, X, Clock, TrendingUp, AlertCircle } from 'lucide-react';
 
@@ -17,7 +17,7 @@ const AttendanceLog = () => {
         try {
             const token = localStorage.getItem('token');
             // Use the correct endpoint to fetch only the user's group
-            const { data: myGroup } = await axios.get('http://127.0.0.1:5000/api/groups/my-group', {
+            const { data: myGroup } = await axios.get('/api/groups/my-group', {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -33,7 +33,7 @@ const AttendanceLog = () => {
     const fetchMyLogs = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/attendance/my-logs', {
+            const res = await axios.get('/api/attendance/my-logs', {
                 headers: { Authorization: `Bearer ${token}` }
             });
 

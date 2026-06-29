@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BookOpen, Calendar, Clock, FileText, Plus, ChevronDown, ChevronUp, CheckCircle, MessageSquare, AlertCircle, Users } from 'lucide-react';
 
@@ -42,13 +42,13 @@ const WeeklyLog = () => {
             const token = localStorage.getItem('token');
 
             // Fetch my group using the correct endpoint
-            const { data: myGroupData } = await axios.get('http://127.0.0.1:5000/api/groups/my-group', {
+            const { data: myGroupData } = await axios.get('/api/groups/my-group', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMyGroup(myGroupData);
 
             // Fetch logs for my group
-            const logsRes = await axios.get('http://127.0.0.1:5000/api/progress/my-group', {
+            const logsRes = await axios.get('/api/progress/my-group', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setLogs(logsRes.data);
@@ -70,7 +70,7 @@ const WeeklyLog = () => {
     const fetchAllGroups = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/groups/', {
+            const res = await axios.get('/api/groups/', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAllGroups(res.data);
@@ -85,7 +85,7 @@ const WeeklyLog = () => {
     const fetchGroupLogs = async (groupId) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get(`http://127.0.0.1:5000/api/progress/group/${groupId}`, {
+            const res = await axios.get(`/api/progress/group/${groupId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setLogs(res.data);
@@ -115,7 +115,7 @@ const WeeklyLog = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.post('http://127.0.0.1:5000/api/progress', {
+            const res = await axios.post('/api/progress', {
                 ...formData,
                 weekNumber: Number(formData.weekNumber),
                 hoursSpent: Number(formData.hoursSpent)

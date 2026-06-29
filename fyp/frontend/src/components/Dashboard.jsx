@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { Users, FileText, Calendar, Clock, CheckCircle, AlertCircle } from 'lucide-react';
@@ -39,7 +39,7 @@ const Dashboard = () => {
         const fetchDashboardData = async () => {
             const token = localStorage.getItem('token');
             const config = { headers: { Authorization: `Bearer ${token}` } };
-            const baseUrl = 'http://127.0.0.1:5000';
+            const baseUrl = '';
 
             try {
                 if (user.role === 'Student') {

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import axios from 'axios';
 import { Users, Plus, Trash2, Check, AlertCircle, UserCheck } from 'lucide-react';
 
@@ -37,7 +37,7 @@ const GroupCreation = () => {
             setError('');
             const studentId = members[index].studentId;
             const token = localStorage.getItem('token');
-            const res = await axios.post('http://127.0.0.1:5000/api/groups/verify-member',
+            const res = await axios.post('/api/groups/verify-member',
                 { studentId },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -56,7 +56,7 @@ const GroupCreation = () => {
         try {
             setError('');
             const token = localStorage.getItem('token');
-            const res = await axios.post('http://127.0.0.1:5000/api/groups/verify-supervisor',
+            const res = await axios.post('/api/groups/verify-supervisor',
                 { registrationId: supervisor.registrationId },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -93,7 +93,7 @@ const GroupCreation = () => {
             const memberIds = members.map(m => m.id);
             const token = localStorage.getItem('token');
 
-            const res = await axios.post('http://127.0.0.1:5000/api/groups',
+            const res = await axios.post('/api/groups',
                 { memberIds, supervisorId: supervisor.id },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FileText, Upload, User, AlignLeft, Hash, Check, AlertCircle } from 'lucide-react';
 
@@ -21,12 +21,12 @@ const ProposalSubmission = () => {
                 const config = { headers: { Authorization: `Bearer ${token}` } };
 
                 // Fetch Supervisors
-                const supRes = await axios.get('http://127.0.0.1:5000/api/users/supervisors');
+                const supRes = await axios.get('/api/users/supervisors');
                 setSupervisors(supRes.data);
 
                 // Fetch User's Group (Auto-fill Group ID)
                 try {
-                    const groupRes = await axios.get('http://127.0.0.1:5000/api/groups/my-group', config);
+                    const groupRes = await axios.get('/api/groups/my-group', config);
                     if (groupRes.data && groupRes.data._id) {
                         setFormData(prev => ({
                             ...prev,
@@ -73,7 +73,7 @@ const ProposalSubmission = () => {
         }
 
         try {
-            const res = await axios.post('http://127.0.0.1:5000/api/proposals', data, {
+            const res = await axios.post('/api/proposals', data, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

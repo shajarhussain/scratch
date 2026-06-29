@@ -1,19 +1,16 @@
 {
   "name": "fyp",
   "version": "1.0.0",
-  "main": "verify_db.js",
+  "main": "backend/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "render-build": "cd backend && npm install --omit=dev && cd ../frontend && npm install && npm run build",
+    "render-start": "node backend/server.js",
+    "start": "node backend/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "mongoose": "^9.0.0"
-  },
-  "directories": {
-    "doc": "docs"
-  },
-  "devDependencies": {},
-  "description": ""
+  }
 }

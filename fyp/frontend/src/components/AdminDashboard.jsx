@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Users, Shield, GraduationCap, Calendar, FileText, BarChart3, UserPlus, Trash2, Edit } from 'lucide-react';
 
@@ -40,7 +40,7 @@ const AdminDashboard = () => {
 
     const fetchStats = async () => {
         try {
-            const { data } = await axios.get('http://127.0.0.1:5000/api/admin/stats', {
+            const { data } = await axios.get('/api/admin/stats', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setStats(data);
@@ -51,7 +51,7 @@ const AdminDashboard = () => {
 
     const fetchUsers = async () => {
         try {
-            const { data } = await axios.get('http://127.0.0.1:5000/api/admin/users', {
+            const { data } = await axios.get('/api/admin/users', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUsers(data);
@@ -68,7 +68,7 @@ const AdminDashboard = () => {
 
         try {
             const { data } = await axios.post(
-                'http://127.0.0.1:5000/api/admin/users',
+                '/api/admin/users',
                 { ...studentForm, role: 'Student' },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -89,7 +89,7 @@ const AdminDashboard = () => {
 
         try {
             const { data } = await axios.post(
-                'http://127.0.0.1:5000/api/admin/users',
+                '/api/admin/users',
                 staffForm,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -114,7 +114,7 @@ const AdminDashboard = () => {
         if (!confirm('Are you sure you want to delete this user?')) return;
 
         try {
-            await axios.delete(`http://127.0.0.1:5000/api/admin/users/${userId}`, {
+            await axios.delete(`/api/admin/users/${userId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('User deleted successfully');

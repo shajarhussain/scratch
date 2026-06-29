@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -35,7 +35,7 @@ const ForgotPassword = () => {
         setLoading(true);
 
         try {
-            const { data } = await axios.post('http://127.0.0.1:5000/api/users/forgot-password', {
+            const { data } = await axios.post('/api/users/forgot-password', {
                 identifier: formData.identifier,
                 newPassword: formData.newPassword
             });

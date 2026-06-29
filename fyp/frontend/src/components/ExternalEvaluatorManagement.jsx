@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Users, Link, Send, Copy, CheckCircle, XCircle, Clock, ExternalLink } from 'lucide-react';
 
@@ -19,14 +19,14 @@ const ExternalEvaluatorManagement = () => {
             const token = localStorage.getItem('token');
 
             // Fetch external evaluators
-            const evalRes = await axios.get('http://127.0.0.1:5000/api/users', {
+            const evalRes = await axios.get('/api/users', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const extEvals = evalRes.data.filter(u => u.role === 'ExternalEvaluator');
             setExternalEvaluators(extEvals);
 
             // Fetch schedules with external evaluators
-            const schedRes = await axios.get('http://127.0.0.1:5000/api/schedules', {
+            const schedRes = await axios.get('/api/schedules', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const finalVivaSchedules = schedRes.data.filter(s =>
@@ -137,10 +137,10 @@ const ExternalEvaluatorManagement = () => {
                     <span>How Magic Links Work</span>
                 </h3>
                 <div className="space-y-2 text-sm text-blue-800">
-                    <p>• <strong>Automatic Generation:</strong> Magic links are automatically created when you assign an external evaluator to a Final Viva schedule</p>
-                    <p>• <strong>Secure Access:</strong> Each link contains a unique 64-character crypto-secure token</p>
-                    <p>• <strong>Time-Limited:</strong> Links expire 2 days after the evaluation date</p>
-                    <p>• <strong>No Account Needed:</strong> External evaluators don't need to create an account - they just click the link</p>
+                    <p>â€¢ <strong>Automatic Generation:</strong> Magic links are automatically created when you assign an external evaluator to a Final Viva schedule</p>
+                    <p>â€¢ <strong>Secure Access:</strong> Each link contains a unique 64-character crypto-secure token</p>
+                    <p>â€¢ <strong>Time-Limited:</strong> Links expire 2 days after the evaluation date</p>
+                    <p>â€¢ <strong>No Account Needed:</strong> External evaluators don't need to create an account - they just click the link</p>
                 </div>
             </div>
 
@@ -295,7 +295,7 @@ const ExternalEvaluatorManagement = () => {
                 <h3 className="text-lg font-semibold text-slate-800 mb-3">Need Help?</h3>
                 <div className="space-y-2 text-sm text-slate-600">
                     <p><strong>Q: How do I create a magic link?</strong></p>
-                    <p>A: Go to Schedules → Create Schedule → Select "Final Viva" → Assign an External Evaluator. The magic link will be auto-generated!</p>
+                    <p>A: Go to Schedules â†’ Create Schedule â†’ Select "Final Viva" â†’ Assign an External Evaluator. The magic link will be auto-generated!</p>
 
                     <p className="mt-3"><strong>Q: How do I send the link to the evaluator?</strong></p>
                     <p>A: Click the copy button next to the magic link, then send it via email or your preferred communication method.</p>

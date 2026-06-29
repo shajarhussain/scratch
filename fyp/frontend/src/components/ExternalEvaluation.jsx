@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { ShieldCheck, CheckCircle, AlertCircle } from 'lucide-react';
@@ -19,7 +19,7 @@ const ExternalEvaluation = () => {
     useEffect(() => {
         const validate = async () => {
             try {
-                const res = await axios.get(`http://127.0.0.1:5000/api/external/validate/${token}`);
+                const res = await axios.get(`/api/external/validate/${token}`);
                 if (res.data.valid) {
                     setValid(true);
                     setData(res.data);
@@ -36,7 +36,7 @@ const ExternalEvaluation = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://127.0.0.1:5000/api/external/submit', {
+            await axios.post('/api/external/submit', {
                 token,
                 marks,
                 feedback

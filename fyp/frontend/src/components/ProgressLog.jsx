@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { Calendar, CheckCircle, MessageSquare, Clock, Award, FileText, Users, ArrowLeft } from 'lucide-react';
@@ -34,7 +34,7 @@ const ProgressLog = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.get('http://127.0.0.1:5000/api/groups', {
+            const { data } = await axios.get('/api/groups', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setGroups(data);
@@ -53,15 +53,15 @@ const ProgressLog = () => {
             let supervisorLogsEndpoint;
 
             if (user.role === 'Student') {
-                progressEndpoint = 'http://127.0.0.1:5000/api/progress/my-group';
-                supervisorLogsEndpoint = 'http://127.0.0.1:5000/api/supervisor-logs/student/my-logs';
+                progressEndpoint = '/api/progress/my-group';
+                supervisorLogsEndpoint = '/api/supervisor-logs/student/my-logs';
             } else if (user.role === 'Supervisor') {
-                progressEndpoint = 'http://127.0.0.1:5000/api/progress/supervisor/groups';
-                supervisorLogsEndpoint = 'http://127.0.0.1:5000/api/supervisor-logs/my-logs';
+                progressEndpoint = '/api/progress/supervisor/groups';
+                supervisorLogsEndpoint = '/api/supervisor-logs/my-logs';
             } else if (user.role === 'Coordinator' || user.role === 'Admin') {
                 if (selectedGroup) {
-                    progressEndpoint = `http://127.0.0.1:5000/api/progress/group/${selectedGroup._id}`;
-                    supervisorLogsEndpoint = `http://127.0.0.1:5000/api/supervisor-logs/coordinator/group/${selectedGroup._id}`;
+                    progressEndpoint = `/api/progress/group/${selectedGroup._id}`;
+                    supervisorLogsEndpoint = `/api/supervisor-logs/coordinator/group/${selectedGroup._id}`;
                 } else {
                     return; // Wait for selection
                 }
@@ -122,7 +122,7 @@ const ProgressLog = () => {
         try {
             const token = localStorage.getItem('token');
             const { data } = await axios.post(
-                'http://127.0.0.1:5000/api/progress',
+                '/api/progress',
                 formData,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -146,7 +146,7 @@ const ProgressLog = () => {
         try {
             const token = localStorage.getItem('token');
             await axios.patch(
-                `http://127.0.0.1:5000/api/progress/${logId}/feedback`,
+                `/api/progress/${logId}/feedback`,
                 { feedback: feedbackForm.feedback },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -175,7 +175,7 @@ const ProgressLog = () => {
                             <div>
                                 <h3 className="font-bold text-slate-800">Meeting Log #{log.logNumber}</h3>
                                 <p className="text-xs text-slate-500">
-                                    {new Date(log.meetingDate).toLocaleDateString()} • {log.meetingType} Meeting
+                                    {new Date(log.meetingDate).toLocaleDateString()} â€¢ {log.meetingType} Meeting
                                 </p>
                             </div>
                         </div>

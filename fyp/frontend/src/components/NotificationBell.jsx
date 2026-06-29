@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Bell, X, Check } from 'lucide-react';
 
@@ -24,7 +24,7 @@ const NotificationBell = () => {
     const fetchUnreadCount = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/notifications/unread-count', {
+            const res = await axios.get('/api/notifications/unread-count', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUnreadCount(res.data.count);
@@ -37,7 +37,7 @@ const NotificationBell = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/notifications?limit=10', {
+            const res = await axios.get('/api/notifications?limit=10', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setNotifications(res.data.notifications);
@@ -50,7 +50,7 @@ const NotificationBell = () => {
     const markAsRead = async (notificationId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://127.0.0.1:5000/api/notifications/${notificationId}/read`, {}, {
+            await axios.put(`/api/notifications/${notificationId}/read`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -67,7 +67,7 @@ const NotificationBell = () => {
     const markAllAsRead = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put('http://127.0.0.1:5000/api/notifications/mark-all-read', {}, {
+            await axios.put('/api/notifications/mark-all-read', {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -81,7 +81,7 @@ const NotificationBell = () => {
     const clearAll = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.delete('http://127.0.0.1:5000/api/notifications/clear-all', {
+            await axios.delete('/api/notifications/clear-all', {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -94,17 +94,17 @@ const NotificationBell = () => {
 
     const getNotificationIcon = (eventType) => {
         const icons = {
-            'Proposal Defense': '🎯',
-            'Interim Evaluation I': '📊',
-            'Mid-Term Evaluation II': '📈',
-            'Final Viva': '🎓',
-            'Submission Deadline': '📅',
-            'Rescheduled Defense': '🔄',
-            'Re-Evaluation': '🔍',
-            'External Evaluator Access': '🔑',
-            'Result Publication': '📢'
+            'Proposal Defense': 'ðŸŽ¯',
+            'Interim Evaluation I': 'ðŸ“Š',
+            'Mid-Term Evaluation II': 'ðŸ“ˆ',
+            'Final Viva': 'ðŸŽ“',
+            'Submission Deadline': 'ðŸ“…',
+            'Rescheduled Defense': 'ðŸ”„',
+            'Re-Evaluation': 'ðŸ”',
+            'External Evaluator Access': 'ðŸ”‘',
+            'Result Publication': 'ðŸ“¢'
         };
-        return icons[eventType] || '🔔';
+        return icons[eventType] || 'ðŸ””';
     };
 
     const getPriorityColor = (priority) => {
@@ -241,7 +241,7 @@ const NotificationBell = () => {
                                     }}
                                     className="text-sm text-blue-600 hover:text-blue-700 font-medium"
                                 >
-                                    View All Notifications →
+                                    View All Notifications â†’
                                 </button>
                             </div>
                         )}

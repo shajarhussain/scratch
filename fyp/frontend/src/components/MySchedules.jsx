@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Calendar as CalendarIcon, Clock, MapPin, Users, AlertCircle } from 'lucide-react';
 
@@ -15,7 +15,7 @@ const MySchedules = () => {
     const fetchMySchedules = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/schedules', {
+            const res = await axios.get('/api/schedules', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setSchedules(res.data);
@@ -29,7 +29,7 @@ const MySchedules = () => {
     const fetchUpcomingEvents = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/schedules/upcoming', {
+            const res = await axios.get('/api/schedules/upcoming', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setUpcomingEvents(res.data);
@@ -40,14 +40,14 @@ const MySchedules = () => {
 
     const getEventIcon = (eventType) => {
         const icons = {
-            'Proposal Defense': '🎯',
-            'Interim Evaluation I': '📊',
-            'Mid-Term Evaluation II': '📈',
-            'Final Viva': '🎓',
-            'Submission Deadline': '📅',
-            'Re-Evaluation': '🔍'
+            'Proposal Defense': 'ðŸŽ¯',
+            'Interim Evaluation I': 'ðŸ“Š',
+            'Mid-Term Evaluation II': 'ðŸ“ˆ',
+            'Final Viva': 'ðŸŽ“',
+            'Submission Deadline': 'ðŸ“…',
+            'Re-Evaluation': 'ðŸ”'
         };
-        return icons[eventType] || '📋';
+        return icons[eventType] || 'ðŸ“‹';
     };
 
     const getEventColor = (eventType) => {
@@ -157,7 +157,7 @@ const MySchedules = () => {
                                                                 rel="noopener noreferrer"
                                                                 className="text-blue-600 hover:underline ml-2"
                                                             >
-                                                                Join Meeting →
+                                                                Join Meeting â†’
                                                             </a>
                                                         )}
                                                     </div>

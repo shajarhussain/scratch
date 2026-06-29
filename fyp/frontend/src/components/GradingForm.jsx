@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import axios from 'axios';
 import { ClipboardCheck, Hash, Star, MessageSquare, Check, AlertCircle } from 'lucide-react';
 
@@ -28,7 +28,7 @@ const GradingForm = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.put(`http://127.0.0.1:5000/api/evaluations/${evalId}/marks`, {
+            const res = await axios.put(`/api/evaluations/${evalId}/marks`, {
                 supervisor: Number(marks.supervisor),
                 internal: Number(marks.internal),
                 external: Number(marks.external),

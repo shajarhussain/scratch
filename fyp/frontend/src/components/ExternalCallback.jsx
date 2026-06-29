@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 
@@ -20,7 +20,7 @@ const ExternalCallback = () => {
 
             try {
                 const { data } = await axios.post(
-                    'http://127.0.0.1:5000/api/external/validate-access',
+                    '/api/external/validate-access',
                     { token }
                 );
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Calendar as CalendarIcon, Plus, Filter, Clock, MapPin, Users, Edit, Trash2, CheckCircle, AlertTriangle, X, Ban } from 'lucide-react';
 
@@ -43,15 +43,15 @@ const Schedules = () => {
     });
 
     const eventTypes = [
-        { value: 'Proposal Defense', icon: '🎯', color: 'green' },
-        { value: 'Interim Evaluation I', icon: '📊', color: 'blue' },
-        { value: 'Mid-Term Evaluation II', icon: '📈', color: 'blue' },
-        { value: 'Final Viva', icon: '🎓', color: 'purple' },
-        { value: 'External Evaluator Access', icon: '🔑', color: 'yellow' },
-        { value: 'Rescheduled Defense', icon: '🔄', color: 'orange' },
-        { value: 'Submission Deadline', icon: '📅', color: 'orange' },
-        { value: 'Re-Evaluation', icon: '🔍', color: 'red' },
-        { value: 'Result Publication', icon: '📢', color: 'gray' }
+        { value: 'Proposal Defense', icon: 'ðŸŽ¯', color: 'green' },
+        { value: 'Interim Evaluation I', icon: 'ðŸ“Š', color: 'blue' },
+        { value: 'Mid-Term Evaluation II', icon: 'ðŸ“ˆ', color: 'blue' },
+        { value: 'Final Viva', icon: 'ðŸŽ“', color: 'purple' },
+        { value: 'External Evaluator Access', icon: 'ðŸ”‘', color: 'yellow' },
+        { value: 'Rescheduled Defense', icon: 'ðŸ”„', color: 'orange' },
+        { value: 'Submission Deadline', icon: 'ðŸ“…', color: 'orange' },
+        { value: 'Re-Evaluation', icon: 'ðŸ”', color: 'red' },
+        { value: 'Result Publication', icon: 'ðŸ“¢', color: 'gray' }
     ];
 
     useEffect(() => {
@@ -67,7 +67,7 @@ const Schedules = () => {
             if (filterEventType) params.eventType = filterEventType;
             if (filterStatus) params.status = filterStatus;
 
-            const res = await axios.get('http://127.0.0.1:5000/api/schedules', {
+            const res = await axios.get('/api/schedules', {
                 headers: { Authorization: `Bearer ${token}` },
                 params
             });
@@ -82,7 +82,7 @@ const Schedules = () => {
     const fetchGroups = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/groups/', {
+            const res = await axios.get('/api/groups/', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setGroups(res.data);
@@ -94,7 +94,7 @@ const Schedules = () => {
     const fetchEvaluators = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/users', {
+            const res = await axios.get('/api/users', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             // Filter users by evaluator roles
@@ -124,13 +124,13 @@ const Schedules = () => {
 
             if (isEditing) {
                 console.log('Sending UPDATE payload:', payload);
-                await axios.put(`http://127.0.0.1:5000/api/schedules/${editId}`, payload, {
+                await axios.put(`/api/schedules/${editId}`, payload, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setMessage('Schedule updated successfully!');
             } else {
                 console.log('Sending CREATE payload:', payload);
-                await axios.post('http://127.0.0.1:5000/api/schedules', payload, {
+                await axios.post('/api/schedules', payload, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setMessage('Schedule created successfully!');
@@ -233,7 +233,7 @@ const Schedules = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const url = `http://127.0.0.1:5000/api/schedules/${id}`;
+            const url = `/api/schedules/${id}`;
 
             await axios.delete(url, {
                 headers: { Authorization: `Bearer ${token}` },
@@ -253,7 +253,7 @@ const Schedules = () => {
     const handleComplete = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://127.0.0.1:5000/api/schedules/${id}/complete`, {}, {
+            await axios.post(`/api/schedules/${id}/complete`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('Schedule marked as completed!');
@@ -267,7 +267,7 @@ const Schedules = () => {
         setLoadingEval(true);
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get(`http://127.0.0.1:5000/api/evaluations/schedule/${scheduleId}`, {
+            const res = await axios.get(`/api/evaluations/schedule/${scheduleId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
@@ -301,7 +301,7 @@ const Schedules = () => {
 
     const getEventIcon = (eventType) => {
         const event = eventTypes.find(e => e.value === eventType);
-        return event ? event.icon : '📋';
+        return event ? event.icon : 'ðŸ“‹';
     };
 
     if (loading) {
@@ -397,7 +397,7 @@ const Schedules = () => {
                                                 <div className="flex items-center space-x-2">
                                                     <CalendarIcon size={16} />
                                                     <span>{new Date(schedule.eventDate).toLocaleDateString()}</span>
-                                                    {schedule.startTime && <span>• {schedule.startTime} - {schedule.endTime}</span>}
+                                                    {schedule.startTime && <span>â€¢ {schedule.startTime} - {schedule.endTime}</span>}
                                                 </div>
                                             )}
                                             {schedule.venue && (
@@ -565,7 +565,7 @@ const Schedules = () => {
                                     onClick={() => setShowCreateModal(false)}
                                     className="text-slate-500 hover:text-slate-700 text-2xl"
                                 >
-                                    ×
+                                    Ã—
                                 </button>
                             </div>
 
@@ -788,7 +788,7 @@ const Schedules = () => {
                                                                 )
                                                                 .map(evaluator => (
                                                                     <option key={evaluator._id} value={evaluator._id}>
-                                                                        {evaluator.name}  —  {evaluator.role}
+                                                                        {evaluator.name}  â€”  {evaluator.role}
                                                                     </option>
                                                                 ))}
                                                         </select>
@@ -880,7 +880,7 @@ const Schedules = () => {
                                                         </div>
                                                     )}
                                                     <p className="text-xs text-slate-500 mt-2 flex items-center">
-                                                        <span className="mr-1">🔐</span>
+                                                        <span className="mr-1">ðŸ”</span>
                                                         {formData.isNewEvaluator
                                                             ? "A temporary account and magic link will be created for this user."
                                                             : "Magic link will be auto-generated for the selected evaluator."}
@@ -932,7 +932,7 @@ const Schedules = () => {
                                                                     if (!confirm("Send invitation email now?")) return;
                                                                     try {
                                                                         const token = localStorage.getItem('token');
-                                                                        await axios.post(`http://127.0.0.1:5000/api/schedules/${editId}/resend-invite`,
+                                                                        await axios.post(`/api/schedules/${editId}/resend-invite`,
                                                                             {
                                                                                 subject: formData.emailSubject,
                                                                                 message: formData.emailMessage,
@@ -951,7 +951,7 @@ const Schedules = () => {
                                                                 }}
                                                                 className="text-xs bg-indigo-600 text-white px-3 py-2 rounded shadow hover:bg-indigo-700 transition"
                                                             >
-                                                                📧 Resend Invitation Email Now
+                                                                ðŸ“§ Resend Invitation Email Now
                                                             </button>
                                                         </div>
                                                     )}
@@ -1010,7 +1010,7 @@ const Schedules = () => {
                                     onClick={() => setShowEvalModal(false)}
                                     className="text-slate-400 hover:text-slate-600 text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-slate-200 transition-colors"
                                 >
-                                    ×
+                                    Ã—
                                 </button>
                             </div>
 

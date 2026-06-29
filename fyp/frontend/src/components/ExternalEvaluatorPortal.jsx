@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { LogOut, Clock, Calendar, Users, AlertCircle, FileText } from 'lucide-react';
@@ -61,7 +61,7 @@ const ExternalEvaluatorPortal = () => {
     const fetchAssignments = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/evaluator/external/assignments', {
+            const res = await axios.get('/api/evaluator/external/assignments', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAssignments(res.data);
@@ -144,7 +144,7 @@ const ExternalEvaluatorPortal = () => {
                         <div className="flex items-center space-x-3 text-red-800">
                             <AlertCircle size={20} />
                             <p className="text-sm font-medium">
-                                ⚠️ Your access will expire soon. Please complete your evaluations.
+                                âš ï¸ Your access will expire soon. Please complete your evaluations.
                             </p>
                         </div>
                     </div>
@@ -192,7 +192,7 @@ const ExternalEvaluatorPortal = () => {
                                     <div className="flex items-start justify-between">
                                         <div className="flex-1">
                                             <div className="flex items-center space-x-3 mb-3">
-                                                <span className="text-3xl">🎓</span>
+                                                <span className="text-3xl">ðŸŽ“</span>
                                                 <div>
                                                     <h3 className="text-lg font-bold text-slate-800">
                                                         {assignment.eventType}
@@ -236,7 +236,7 @@ const ExternalEvaluatorPortal = () => {
 
                 {/* Security Notice */}
                 <div className="mt-6 text-center text-xs text-slate-400">
-                    <p>🔒 This is a secure, time-limited access portal. All activities are logged.</p>
+                    <p>ðŸ”’ This is a secure, time-limited access portal. All activities are logged.</p>
                 </div>
             </div>
         </div>

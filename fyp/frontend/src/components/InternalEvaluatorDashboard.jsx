@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Calendar, Users, CheckCircle, Clock, FileText, BarChart3 } from 'lucide-react';
 import EvaluationForm from './EvaluationForm';
@@ -26,7 +26,7 @@ const InternalEvaluatorDashboard = () => {
     const fetchAssignments = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/evaluator/assignments', {
+            const res = await axios.get('/api/evaluator/assignments', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAssignments(res.data);
@@ -57,12 +57,12 @@ const InternalEvaluatorDashboard = () => {
 
     const getEventIcon = (type) => {
         const icons = {
-            'Proposal Defense': '🎯',
-            'Interim Evaluation I': '📊',
-            'Mid-Term Evaluation II': '📈',
-            'Final Viva': '🎓'
+            'Proposal Defense': 'ðŸŽ¯',
+            'Interim Evaluation I': 'ðŸ“Š',
+            'Mid-Term Evaluation II': 'ðŸ“ˆ',
+            'Final Viva': 'ðŸŽ“'
         };
-        return icons[type] || '📋';
+        return icons[type] || 'ðŸ“‹';
     };
 
     const filteredAssignments = assignments.filter(a => {

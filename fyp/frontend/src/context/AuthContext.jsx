@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+﻿import { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 const AuthContext = createContext();
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (email, password, role) => {
         try {
-            const res = await axios.post('http://127.0.0.1:5000/api/users/login', { email, password, role });
+            const res = await axios.post('/api/users/login', { email, password, role });
             const { token, _id, name, department } = res.data;
 
             const userData = { _id, name, role, department };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Lock, Clock, CheckCircle, XCircle, Loader } from 'lucide-react';
@@ -18,7 +18,7 @@ const ExternalEvaluatorAccess = () => {
 
     const verifyToken = async () => {
         try {
-            const res = await axios.get(`http://127.0.0.1:5000/api/evaluator/external/verify/${token}`);
+            const res = await axios.get(`/api/evaluator/external/verify/${token}`);
 
             if (res.data.valid) {
                 setVerified(true);
@@ -38,7 +38,7 @@ const ExternalEvaluatorAccess = () => {
 
     const handleLogin = async () => {
         try {
-            const res = await axios.post('http://127.0.0.1:5000/api/evaluator/external/login', {
+            const res = await axios.post('/api/evaluator/external/login', {
                 token
             });
 
@@ -144,7 +144,7 @@ const ExternalEvaluatorAccess = () => {
                     onClick={handleLogin}
                     className="w-full bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 rounded-xl font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transition-all shadow-lg"
                 >
-                    Proceed to Evaluation Portal →
+                    Proceed to Evaluation Portal â†’
                 </button>
 
                 <p className="text-center text-xs text-slate-400 mt-6">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TrendingUp, AlertTriangle, FileText, Users, Calendar } from 'lucide-react';
 
@@ -16,7 +16,7 @@ const CoordinatorLogAnalytics = () => {
     const fetchAnalytics = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/supervisor-logs/coordinator/analytics', {
+            const res = await axios.get('/api/supervisor-logs/coordinator/analytics', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAnalytics(res.data);
@@ -30,7 +30,7 @@ const CoordinatorLogAnalytics = () => {
     const fetchAtRiskGroups = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/supervisor-logs/coordinator/at-risk', {
+            const res = await axios.get('/api/supervisor-logs/coordinator/at-risk', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAtRiskGroups(res.data);
@@ -42,7 +42,7 @@ const CoordinatorLogAnalytics = () => {
     const viewGroupLogs = async (groupId) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get(`http://127.0.0.1:5000/api/supervisor-logs/coordinator/group/${groupId}`, {
+            const res = await axios.get(`/api/supervisor-logs/coordinator/group/${groupId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setSelectedGroupLogs(res.data);
@@ -216,12 +216,12 @@ const CoordinatorLogAnalytics = () => {
                                                 </span>
                                             </div>
                                             <div className="text-sm text-slate-600 mt-1">
-                                                Last Log: {new Date(log.meetingDate).toLocaleDateString()} •
+                                                Last Log: {new Date(log.meetingDate).toLocaleDateString()} â€¢
                                                 Supervisor: {log.supervisor?.name}
                                             </div>
                                             {log.warningDetails && (
                                                 <div className="mt-2 text-sm text-red-700 bg-red-50 p-2 rounded">
-                                                    ⚠ {log.warningDetails}
+                                                    âš  {log.warningDetails}
                                                 </div>
                                             )}
                                         </div>
@@ -249,7 +249,7 @@ const CoordinatorLogAnalytics = () => {
                                 <div className="flex items-center justify-between text-sm mb-1">
                                     <span className="font-medium text-slate-700">{sup.name}</span>
                                     <span className="text-slate-600">
-                                        {sup.totalLogs} logs • {sup.groupCount} groups
+                                        {sup.totalLogs} logs â€¢ {sup.groupCount} groups
                                     </span>
                                 </div>
                                 <div className="w-full bg-slate-200 rounded-full h-2">
@@ -274,7 +274,7 @@ const CoordinatorLogAnalytics = () => {
                                 onClick={() => setSelectedGroupLogs(null)}
                                 className="text-slate-500 hover:text-slate-700 text-2xl"
                             >
-                                ×
+                                Ã—
                             </button>
                         </div>
                         <div className="p-6 space-y-4">
@@ -284,7 +284,7 @@ const CoordinatorLogAnalytics = () => {
                                         Log #{log.logNumber} - {new Date(log.meetingDate).toLocaleDateString()}
                                     </div>
                                     <div className="text-sm text-slate-600 mt-1">
-                                        {log.progressStatus} • {log.qualityAssessment} • {log.logStatus}
+                                        {log.progressStatus} â€¢ {log.qualityAssessment} â€¢ {log.logStatus}
                                     </div>
                                     {log.internalRemarks && (
                                         <div className="mt-2 text-sm bg-yellow-50 border border-yellow-200 rounded p-2">

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Users, Mail, IdCard, UserCircle, Check, X } from 'lucide-react';
 
@@ -14,7 +14,7 @@ const GroupsDashboard = () => {
     const fetchGroups = async () => {
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.get('http://127.0.0.1:5000/api/groups', {
+            const { data } = await axios.get('/api/groups', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setGroups(data);

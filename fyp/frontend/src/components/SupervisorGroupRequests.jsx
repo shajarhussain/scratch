@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Users, Check, X, AlertCircle, Clock } from 'lucide-react';
 
@@ -16,7 +16,7 @@ const SupervisorGroupRequests = () => {
     const fetchGroupRequests = async () => {
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.get('http://127.0.0.1:5000/api/groups/supervisor/requests', {
+            const { data } = await axios.get('/api/groups/supervisor/requests', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setGroups(data);
@@ -44,7 +44,7 @@ const SupervisorGroupRequests = () => {
             };
 
             await axios.patch(
-                `http://127.0.0.1:5000/api/groups/${actionModal.group._id}/supervisor-approval`,
+                `/api/groups/${actionModal.group._id}/supervisor-approval`,
                 payload,
                 { headers: { Authorization: `Bearer ${token}` } }
             );

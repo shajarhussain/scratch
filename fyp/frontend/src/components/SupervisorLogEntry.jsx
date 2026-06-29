@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FileText, Calendar, CheckCircle, AlertCircle } from 'lucide-react';
 
@@ -39,7 +39,7 @@ const SupervisorLogEntry = () => {
     const fetchGroups = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/groups/', {
+            const res = await axios.get('/api/groups/', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setGroups(res.data);
@@ -51,7 +51,7 @@ const SupervisorLogEntry = () => {
     const fetchMyLogs = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/supervisor-logs/my-logs', {
+            const res = await axios.get('/api/supervisor-logs/my-logs', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMyLogs(res.data);
@@ -68,12 +68,12 @@ const SupervisorLogEntry = () => {
             const token = localStorage.getItem('token');
 
             if (editingLog) {
-                await axios.put(`http://127.0.0.1:5000/api/supervisor-logs/${editingLog._id}`, formData, {
+                await axios.put(`/api/supervisor-logs/${editingLog._id}`, formData, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setMessage('Log updated successfully!');
             } else {
-                await axios.post('http://127.0.0.1:5000/api/supervisor-logs', formData, {
+                await axios.post('/api/supervisor-logs', formData, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setMessage('Log created successfully!');
@@ -527,7 +527,7 @@ const SupervisorLogEntry = () => {
                                             )}
                                         </div>
                                         <div className="text-sm text-slate-600 mt-1">
-                                            {new Date(log.meetingDate).toLocaleDateString()} • {log.meetingType} • {log.progressStatus}
+                                            {new Date(log.meetingDate).toLocaleDateString()} â€¢ {log.meetingType} â€¢ {log.progressStatus}
                                         </div>
                                     </div>
                                     <button

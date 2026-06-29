@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { TrendingUp, Users, AlertTriangle, Flag, Calendar, X } from 'lucide-react';
 
@@ -13,7 +13,7 @@ const CoordinatorInsights = () => {
     const fetchInsights = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://127.0.0.1:5000/api/attendance/insights', {
+            const res = await axios.get('/api/attendance/insights', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setInsights(res.data);
@@ -187,7 +187,7 @@ const CoordinatorInsights = () => {
                                                 <span className="font-semibold text-slate-800">
                                                     Group {feedback.group?.groupCode}
                                                 </span>
-                                                <span className="text-slate-500">•</span>
+                                                <span className="text-slate-500">â€¢</span>
                                                 <span className="text-slate-600">{feedback.student?.name}</span>
                                             </div>
                                             <div className="mt-2 text-sm text-slate-700 p-3 bg-slate-50 rounded-lg">

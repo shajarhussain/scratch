@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { FileText, Upload, CheckCircle, Clock, Trash2, Layers, Send, AlertTriangle, BookOpen } from 'lucide-react';
@@ -15,7 +15,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
     useEffect(() => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
-            const baseUrl = 'http://127.0.0.1:5000';
+            const baseUrl = '';
             const config = { headers: { Authorization: `Bearer ${token}` } };
 
             try {
@@ -59,7 +59,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
         formData.append('file', srsFile);
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://127.0.0.1:5000/api/schedules/${interimSchedule._id}/srs/upload`, formData, {
+            await axios.post(`/api/schedules/${interimSchedule._id}/srs/upload`, formData, {
                 headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
             });
             alert("SRS Document Submitted!");
@@ -71,7 +71,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
         if (!confirm("Delete SRS?")) return;
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://127.0.0.1:5000/api/schedules/${interimSchedule._id}/srs`, {
+            await axios.delete(`/api/schedules/${interimSchedule._id}/srs`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             reload();
@@ -86,7 +86,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
         formData.append('type', type);
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://127.0.0.1:5000/api/schedules/${scheduleId}/artifacts`, formData, {
+            await axios.post(`/api/schedules/${scheduleId}/artifacts`, formData, {
                 headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
             });
             reload();
@@ -97,7 +97,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
         if (!confirm("Delete artifact?")) return;
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://127.0.0.1:5000/api/schedules/${scheduleId}/artifacts/${artifactId}`, {
+            await axios.delete(`/api/schedules/${scheduleId}/artifacts/${artifactId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             reload();
@@ -112,7 +112,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
         if (!confirm(msg)) return;
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://127.0.0.1:5000/api/schedules/${scheduleId}/deliverable/submit`, {}, {
+            await axios.post(`/api/schedules/${scheduleId}/deliverable/submit`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Submitted Successfully!");
@@ -123,7 +123,7 @@ const DeliverablesDashboard = ({ view = 'Interim' }) => {
     const handleReview = async (scheduleId, status, comments) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://127.0.0.1:5000/api/schedules/${scheduleId}/srs/review`,
+            await axios.put(`/api/schedules/${scheduleId}/srs/review`,
                 { status, comments },
                 { headers: { Authorization: `Bearer ${token}` } }
             );

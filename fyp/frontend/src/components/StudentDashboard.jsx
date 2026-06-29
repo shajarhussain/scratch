@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+﻿import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Users, AlertCircle, Check, Clock, X, UserCheck } from 'lucide-react';
 
@@ -17,13 +17,13 @@ const StudentDashboard = () => {
             const config = { headers: { Authorization: `Bearer ${token}` } };
 
             // 1. Fetch Group
-            const { data: groupData } = await axios.get('http://127.0.0.1:5000/api/groups/my-group', config);
+            const { data: groupData } = await axios.get('/api/groups/my-group', config);
             setMyGroup(groupData || null);
 
             // 2. If group exists, fetch Proposal
             if (groupData && groupData._id) {
                 try {
-                    const { data: proposalData } = await axios.get(`http://127.0.0.1:5000/api/proposals/group/${groupData._id}`, config);
+                    const { data: proposalData } = await axios.get(`/api/proposals/group/${groupData._id}`, config);
                     if (proposalData && proposalData.length > 0) {
                         setProposal(proposalData[0]); // Get latest proposal
                     }
@@ -252,12 +252,12 @@ const FinalVivaSection = ({ groupId }) => {
         try {
             const token = localStorage.getItem('token');
             // Find Final Viva schedule for this group
-            const res = await axios.get(`http://127.0.0.1:5000/api/schedules?groupId=${groupId}&eventType=Final Viva`, {
+            const res = await axios.get(`/api/schedules?groupId=${groupId}&eventType=Final Viva`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             if (res.data && res.data.length > 0) {
                 // Fetch full details including artifacts
-                const fullRes = await axios.get(`http://127.0.0.1:5000/api/evaluator/assignments/${res.data[0]._id}`, {
+                const fullRes = await axios.get(`/api/evaluator/assignments/${res.data[0]._id}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setSchedule(fullRes.data.schedule);
@@ -281,7 +281,7 @@ const FinalVivaSection = ({ groupId }) => {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.post(`http://127.0.0.1:5000/api/schedules/${schedule._id}/artifacts`, formData, {
+            await axios.post(`/api/schedules/${schedule._id}/artifacts`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'

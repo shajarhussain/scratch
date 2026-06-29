@@ -3,6 +3,10 @@ node_modules/
 fyp/backend/uploads/
 fyp/backend/expanded_output.log
 fyp/backend/expanded_test_results_raw.json
+fyp/frontend/dist/
+fyp/selenium-tests/screenshots/
+fyp/backend/mutants/
+cloudflared.exe
 # Other temp files
 .env
 .DS_Store
